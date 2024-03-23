@@ -30,36 +30,46 @@ const Accordion = () => {
 
   return (
     <div className="wrapper">
-      <div>
-        <button onClick={onBtnClick}>
-          {multiSelect ? "Single Select" : "Multi Select"}
-        </button>
-      </div>
-      <div className="accordion">
-        {data && data.length ? (
-          data.map((item) => {
-            return (
-              <div
-                className="item"
-                onClick={() => {
-                  handleOnClick(item.id);
-                }}
-              >
-                <div className="title">
-                  <h1>{item.question}</h1>
-                  {selected === item.id ? <span>-</span> : <span>+</span>}
-                </div>
-                {(selected === item.id || selectedItems.includes(item.id)) && (
-                  <div className="content">
-                    <p>{item.answer}</p>
+      <div className="container">
+        <div>
+          <button onClick={onBtnClick}>
+            {multiSelect ? "Single Select" : "Multi Select"}
+          </button>
+        </div>
+        <div className="accordion">
+          {data && data.length ? (
+            data.map((item) => {
+              return (
+                <div
+                  className="item"
+                  onClick={() => {
+                    handleOnClick(item.id);
+                  }}
+                >
+                  <div className="title" style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                  }}>
+                    <h3 style={{
+                      paddingRight: "10px",
+                    }}>{item.question}</h3>
+                    {selected === item.id ? <span>-</span> : <span>+</span>}
                   </div>
-                )}
-              </div>
-            );
-          })
-        ) : (
-          <h1>No data</h1>
-        )}
+                  {(selected === item.id ||
+                    selectedItems.includes(item.id)) && (
+                    <div className="content">
+                      <span>{item.answer}</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <h1>No data</h1>
+          )}
+        </div>
       </div>
     </div>
   );
