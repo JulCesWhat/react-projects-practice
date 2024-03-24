@@ -1,0 +1,17 @@
+.star {
+    color: grey;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.active {
+    color: yellow;
+}
+
+.star-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 40px 0;
+}
