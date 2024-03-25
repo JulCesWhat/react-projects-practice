@@ -41,6 +41,7 @@ const Accordion = () => {
             data.map((item) => {
               return (
                 <div
+                  key={item.id}
                   className="item"
                   onClick={() => {
                     handleOnClick(item.id);
