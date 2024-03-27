@@ -1,0 +1,13 @@
+.tree-view-container {
+    margin: 20px 0;
+}
+
+.item-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.item-title span {
+    margin-left: 8px;
+}
