@@ -4,11 +4,12 @@ import RandomColor from "./components/random-color";
 import StarRating from "./components/start-rating";
 import ImageSlider from "./components/image-slider";
 import LoadMoreProducts from "./components/load-more-products";
-import TreeView from './components/tree-view'
-import menuList from './components/tree-view/data'
-import QrCodeGenerator from './components/qr-code-generator'
+import TreeView from "./components/tree-view";
+import menuList from "./components/tree-view/data";
+import QrCodeGenerator from "./components/qr-code-generator";
 import LightDarkMode from "./components/light-dark-mode";
-import ScrollIndicator from './components/scroll-indicator'
+import ScrollIndicator from "./components/scroll-indicator";
+import CustomTabs from "./components/custom-tabs";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <QrCodeGenerator />
       <LightDarkMode />
       <ScrollIndicator url={"https://dummyjson.com/products?limit=100"} />
+      <CustomTabs />
     </>
   );
 }
