@@ -33,8 +33,8 @@ const RandomColor = () => {
       //   setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
     } else {
       setColor(
-        `rgb(${randomUtility(255)}, ${randomUtility(255)}, ${randomUtility(
-          255
+        `rgb(${randomUtility(256)}, ${randomUtility(256)}, ${randomUtility(
+          256
         )})`
       );
     }
