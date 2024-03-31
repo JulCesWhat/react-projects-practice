@@ -10,6 +10,7 @@ import QrCodeGenerator from "./components/qr-code-generator";
 import LightDarkMode from "./components/light-dark-mode";
 import ScrollIndicator from "./components/scroll-indicator";
 import CustomTabs from "./components/custom-tabs";
+import CustomModal from "./components/custom-modal-popup";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <LightDarkMode />
       <ScrollIndicator url={"https://dummyjson.com/products?limit=100"} />
       <CustomTabs />
+      <CustomModal />
     </>
   );
 }
