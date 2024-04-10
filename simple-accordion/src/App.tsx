@@ -12,6 +12,7 @@ import ScrollIndicator from "./components/scroll-indicator";
 import CustomTabs from "./components/custom-tabs";
 import CustomModal from "./components/custom-modal-popup";
 import ProfileFinder from "./components/profile-finder";
+import SearchAutoComplete from './components/search-auto-complete'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <CustomTabs />
       <CustomModal />
       <ProfileFinder />
+      <SearchAutoComplete />
     </>
   );
 }
