@@ -12,7 +12,8 @@ import ScrollIndicator from "./components/scroll-indicator";
 import CustomTabs from "./components/custom-tabs";
 import CustomModal from "./components/custom-modal-popup";
 import ProfileFinder from "./components/profile-finder";
-import SearchAutoComplete from './components/search-auto-complete'
+import SearchAutoComplete from "./components/search-auto-complete";
+import TicTacToe from "./components/tac-tac-toe";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <CustomModal />
       <ProfileFinder />
       <SearchAutoComplete />
+      <TicTacToe />
     </>
   );
 }
