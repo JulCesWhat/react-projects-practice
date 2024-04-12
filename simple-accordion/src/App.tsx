@@ -16,7 +16,8 @@ import SearchAutoComplete from "./components/search-auto-complete";
 import TicTacToe from "./components/tac-tac-toe";
 import { FeatureFlagsProvider } from "./components/feature-flags/FeatureFlagsProvider";
 import FeatureFlags from "./components/feature-flags";
-import TestHooks from "./components/test-hooks";
+import TestFetchHook from "./components/test-fetch-hook";
+import TestOutsideClickHook from "./components/text-outside-click-hook";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
       <FeatureFlagsProvider>
         <FeatureFlags />
       </FeatureFlagsProvider>
-      <TestHooks />
+      <TestFetchHook />
+      <TestOutsideClickHook />
     </>
   );
 }

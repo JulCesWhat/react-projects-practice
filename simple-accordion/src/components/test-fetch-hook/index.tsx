@@ -1,6 +1,6 @@
-import useFetch, {ActionType} from "../hooks/useFetch";
+import useFetch, {ActionType} from "../../hooks/useFetch";
 
-const TestHooks = () => {
+const TestFetchHooks = () => {
   const { data, error, status } = useFetch(
     "https://dummyjson.com/products",
     undefined
@@ -19,4 +19,4 @@ const TestHooks = () => {
   </div>; 
 };
 
-export default TestHooks;
+export default TestFetchHooks;
