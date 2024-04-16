@@ -17,7 +17,8 @@ import TicTacToe from "./components/tac-tac-toe";
 import { FeatureFlagsProvider } from "./components/feature-flags/FeatureFlagsProvider";
 import FeatureFlags from "./components/feature-flags";
 import TestFetchHook from "./components/test-fetch-hook";
-import TestOutsideClickHook from "./components/text-outside-click-hook";
+import TestOutsideClickHook from "./components/test-outside-click-hook";
+import TestWindowResizeHook from "./components/test-window-resize-hook";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       </FeatureFlagsProvider>
       <TestFetchHook />
       <TestOutsideClickHook />
+      <TestWindowResizeHook />
     </>
   );
 }
