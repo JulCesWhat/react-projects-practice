@@ -19,6 +19,7 @@ import FeatureFlags from "./components/feature-flags";
 import TestFetchHook from "./components/test-fetch-hook";
 import TestOutsideClickHook from "./components/test-outside-click-hook";
 import TestWindowResizeHook from "./components/test-window-resize-hook";
+import ScrollTo from "./components/scroll-to";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       <TestFetchHook />
       <TestOutsideClickHook />
       <TestWindowResizeHook />
+      <ScrollTo />
     </>
   );
 }
