@@ -20,6 +20,7 @@ import TestFetchHook from "./components/test-fetch-hook";
 import TestOutsideClickHook from "./components/test-outside-click-hook";
 import TestWindowResizeHook from "./components/test-window-resize-hook";
 import ScrollTo from "./components/scroll-to";
+import ScrollToSection from "./components/scroll-to-section";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
       <TestOutsideClickHook />
       <TestWindowResizeHook />
       <ScrollTo />
+      <ScrollToSection />
     </>
   );
 }
