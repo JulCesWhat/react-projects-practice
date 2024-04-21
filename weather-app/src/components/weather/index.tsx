@@ -49,6 +49,13 @@ const Weather = () => {
     }
   );
 
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   useEffect(() => {
     fetchWeather("Pensacola");
   }, []);
@@ -60,30 +67,50 @@ const Weather = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}`
       );
       const data = await response.json();
-      console.log(data)
       setState({ type: "SET_WEATHER_DATA", payload: data });
     } catch (error) {
-      console.error(error);
       setState({ type: "SET_ERROR", payload: "There was an error" });
     }
   };
 
-  const getWeather = (search: string) => {
-    console.log(search);
-    fetchWeather(search);
-  };
-
   return (
     <div>
-      <Search getWeather={getWeather} />
+      <Search getWeather={fetchWeather} />
       {status === "LOADING" ? (
         <div>...Loading</div>
       ) : (
-        <div>
-          <h2>{weatherData.name}</h2>
-          {/* <h3>{weatherData.weather[0]?.description}</h3>
-          <h3>{weatherData.main?.temp}</h3> */}
-        </div>
+        <>
+          <div className="city-name">
+            <h2>
+              {weatherData.name},<span>{weatherData?.sys?.country}</span>
+            </h2>
+          </div>
+          <div className="date">
+            <span>{currentDate}</span>
+          </div>
+          <div>{weatherData?.main?.temp}</div>
+          <p className="description">
+            {weatherData?.weather && weatherData?.weather[0]?.description}
+          </p>
+          <div className="weather-info">
+            <div>
+              <div>
+                <p className="wind">
+                  {weatherData?.wind?.speed} <span>km/h</span>
+                </p>
+                <p>Wind Speed</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p className="humidity">
+                  {weatherData?.main?.humidity} <span>%</span>
+                </p>
+                <p>Humidity</p>
+              </div>
+            </div>
+          </div>
+        </>
       )}
       {status === "ERROR" && <div>{error}</div>}
     </div>
