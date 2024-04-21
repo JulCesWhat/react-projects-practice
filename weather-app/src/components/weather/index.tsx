@@ -2,7 +2,7 @@ import { useEffect, useReducer } from "react";
 
 import Search from "./../search";
 
-const API_KEY = "4d708693fff247cbf86d09183bd5abc6";
+const API_KEY = "";
 
 interface IState {
   status: string;
