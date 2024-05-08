@@ -17,7 +17,7 @@ interface IGlobalContextType {
 export const GlobalContext = createContext<IGlobalContextType>({
   search: "",
   setSearch: () => {},
-  data: { status: "idle", error: "", data: [] },
+  data: { status: "idle", error: "", recipes: [] },
   setData: () => {},
   fetchData: () => {},
 });
@@ -32,25 +32,25 @@ interface IRecipe {
 interface IState {
   status: string;
   error: string;
-  data: IRecipe[];
+  recipes: IRecipe[];
 }
 
 interface IAction {
   type: string;
   error: string;
-  data: IRecipe[];
+  recipes: IRecipe[];
 }
 
 const reducerFunction = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case "IDLE":
-      return { ...state, status: "IDLE" };
+      return { ...state, status: "IDLE", recipes: [] };
     case "LOADING":
-      return { ...state, status: "LOADING" };
+      return { ...state, status: "LOADING", recipes: [] };
     case "SUCCESS":
-      return { ...state, status: "SUCCESS" };
+      return { ...state, status: "SUCCESS", recipes: action.recipes };
     case "ERROR":
-      return { ...state, status: "ERROR", error: action.error };
+      return { ...state, status: "ERROR", recipes: [], error: action.error };
     default:
       return state;
   }
@@ -63,21 +63,21 @@ export default function GlobalState({ children }: { children: ReactNode }) {
   const [data, setData] = useReducer(reducerFunction, {
     status: "idle",
     error: "",
-    data: [],
+    recipes: [],
   });
 
   const fetchData = async () => {
-    setData({ type: "LOADING", error: "", data: [] });
+    setData({ type: "LOADING", error: "", recipes: [] });
     try {
       const response = await fetch(`${URL}${search}`);
       const dataResponse = await response.json();
       const values = dataResponse?.data?.recipes;
       if (values.length) {
-        setData({ type: "SUCCESS", error: "", data: values });
+        setData({ type: "SUCCESS", error: "", recipes: [...values] });
       }
       setSearch("");
     } catch (error) {
-      setData({ type: "ERROR", error: "There was an error", data: [] });
+      setData({ type: "ERROR", error: "There was an error", recipes: [] });
     }
   };
 
