@@ -12,6 +12,8 @@ interface IGlobalContextType {
   data: IState;
   setData: Dispatch<IAction>;
   fetchData: () => void;
+  recipeDetails: IRecipeDetails | null;
+  setRecipeDetails: Dispatch<IRecipeDetails>;
 }
 
 export const GlobalContext = createContext<IGlobalContextType>({
@@ -20,9 +22,28 @@ export const GlobalContext = createContext<IGlobalContextType>({
   data: { status: "idle", error: "", recipes: [] },
   setData: () => {},
   fetchData: () => {},
+  recipeDetails: null,
+  setRecipeDetails: () => {},
 });
 
-interface IRecipe {
+export interface IIngredient {
+  quantity: number | null;
+  unit: string;
+  description: string;
+}
+
+export interface IRecipeDetails {
+  publisher: string;
+  ingredients: IIngredient[];
+  source_url: string;
+  image_url: string;
+  title: string;
+  servings: number;
+  cooking_time: number;
+  id: string;
+}
+
+export interface IRecipe {
   id: string;
   image_url: string;
   publisher: string;
@@ -65,6 +86,9 @@ export default function GlobalState({ children }: { children: ReactNode }) {
     error: "",
     recipes: [],
   });
+  const [recipeDetails, setRecipeDetails] = useState<IRecipeDetails | null>(
+    null
+  );
 
   const fetchData = async () => {
     setData({ type: "LOADING", error: "", recipes: [] });
@@ -83,7 +107,15 @@ export default function GlobalState({ children }: { children: ReactNode }) {
 
   return (
     <GlobalContext.Provider
-      value={{ search, setSearch, data, setData, fetchData }}
+      value={{
+        search,
+        setSearch,
+        data,
+        setData,
+        fetchData,
+        recipeDetails,
+        setRecipeDetails,
+      }}
     >
       {children}
     </GlobalContext.Provider>
