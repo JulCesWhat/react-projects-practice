@@ -5,6 +5,7 @@ import {
   useReducer,
   useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface IGlobalContextType {
   search: string;
@@ -14,6 +15,8 @@ interface IGlobalContextType {
   fetchData: () => void;
   recipeDetails: IRecipeDetails | null;
   setRecipeDetails: Dispatch<IRecipeDetails>;
+  favorites: IRecipe[];
+  saveToFavorites: (recipeToBeAdded: IRecipe) => void;
 }
 
 export const GlobalContext = createContext<IGlobalContextType>({
@@ -24,6 +27,8 @@ export const GlobalContext = createContext<IGlobalContextType>({
   fetchData: () => {},
   recipeDetails: null,
   setRecipeDetails: () => {},
+  favorites: [],
+  saveToFavorites: () => {},
 });
 
 export interface IIngredient {
@@ -82,13 +87,16 @@ const URL = "https://forkify-api.herokuapp.com/api/v2/recipes?search=";
 export default function GlobalState({ children }: { children: ReactNode }) {
   const [search, setSearch] = useState("");
   const [data, setData] = useReducer(reducerFunction, {
-    status: "idle",
+    status: "IDLE",
     error: "",
     recipes: [],
   });
   const [recipeDetails, setRecipeDetails] = useState<IRecipeDetails | null>(
     null
   );
+  const [favorites, setFavorites] = useState<IRecipe[] | []>([]);
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     setData({ type: "LOADING", error: "", recipes: [] });
@@ -98,10 +106,24 @@ export default function GlobalState({ children }: { children: ReactNode }) {
       const values = dataResponse?.data?.recipes;
       if (values.length) {
         setData({ type: "SUCCESS", error: "", recipes: [...values] });
+      } else {
+        setData({ type: "ERROR", error: "No recipes found", recipes: [] });
       }
       setSearch("");
+      navigate("/");
     } catch (error) {
       setData({ type: "ERROR", error: "There was an error", recipes: [] });
+    }
+  };
+
+  const saveToFavorites = (recipeToBeAdded: IRecipe) => {
+    const item = favorites.some((recipe) => recipe.id === recipeToBeAdded.id);
+    if (item) {
+      setFavorites(
+        favorites.filter((recipe) => recipe.id !== recipeToBeAdded.id)
+      );
+    } else {
+      setFavorites([...favorites, recipeToBeAdded]);
     }
   };
 
@@ -115,6 +137,8 @@ export default function GlobalState({ children }: { children: ReactNode }) {
         fetchData,
         recipeDetails,
         setRecipeDetails,
+        favorites,
+        saveToFavorites,
       }}
     >
       {children}

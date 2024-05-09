@@ -7,7 +7,8 @@ const URL = "https://forkify-api.herokuapp.com/api/v2/recipes/";
 
 export default function Details() {
   const { id } = useParams();
-  const { recipeDetails, setRecipeDetails } = useGlobalContext();
+  const { recipeDetails, setRecipeDetails, favorites, saveToFavorites } =
+    useGlobalContext();
 
   useEffect(() => {
     if (!id) return;
@@ -42,8 +43,15 @@ export default function Details() {
         <p className="text-sm text-gray-500">{recipeDetails?.publisher}</p>
         <h1 className="text-lg font-semibold">{recipeDetails?.title}</h1>
         <div>
-          <button className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
-            Save as favorites
+          <button
+            className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white"
+            onClick={() => {
+              saveToFavorites(recipeDetails as IRecipeDetails);
+            }}
+          >
+            {favorites.some((f) => f.id === recipeDetails?.id)
+              ? "Remove from favorites"
+              : "Add to favorites"}
           </button>
         </div>
         <div>
