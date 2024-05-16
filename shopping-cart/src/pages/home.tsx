@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Circles } from "react-loader-spinner";
-import ProductTile, { IProduct } from "../components/product-tile";
+import ProductTile from "../components/product-tile";
+import { IProduct } from "../models/product";
 
 const HomePage = () => {
   const [product, setProduct] = useState<IProduct[]>([]);
