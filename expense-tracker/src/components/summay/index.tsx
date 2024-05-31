@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import AddTransaction from "../add-transaction";
+import Chart from "../chart";
 
 interface ISummaryProps {
   onClose: () => void;
@@ -82,7 +83,7 @@ const Summary = ({ onClose, isOpen }: ISummaryProps) => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Heading>Chart</Heading>
+          <Chart expense={100} income={1000}></Chart>
         </Box>
       </Flex>
       <AddTransaction onClose={onClose} isOpen={isOpen} />
