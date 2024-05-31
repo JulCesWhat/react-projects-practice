@@ -5,9 +5,16 @@ import Chart from "../chart";
 interface ISummaryProps {
   onClose: () => void;
   isOpen: boolean;
+  totalExpense: number;
+  totalIncome: number;
 }
 
-const Summary = ({ onClose, isOpen }: ISummaryProps) => {
+const Summary = ({
+  onClose,
+  isOpen,
+  totalExpense,
+  totalIncome,
+}: ISummaryProps) => {
   return (
     <Box
       p="6"
@@ -40,7 +47,7 @@ const Summary = ({ onClose, isOpen }: ISummaryProps) => {
           mr={"2"}
         >
           <Heading size={"mg"} mb={"4"} color={"gray.600"}>
-            Balance is 100
+            Balance is {totalIncome - totalExpense}
           </Heading>
           <Flex
             justifyContent={"space-evenly"}
@@ -52,7 +59,7 @@ const Summary = ({ onClose, isOpen }: ISummaryProps) => {
             borderColor={"gray.100"}
           >
             <Flex flexDirection={"column"} alignItems={"center"}>
-              <Heading color={"gray.700"}>$100</Heading>
+              <Heading color={"gray.700"}>${totalIncome}</Heading>
               <Text color={"gray.600"}>Total Income</Text>
             </Flex>
           </Flex>
@@ -66,11 +73,10 @@ const Summary = ({ onClose, isOpen }: ISummaryProps) => {
             borderColor={"gray.100"}
           >
             <Flex flexDirection={"column"} alignItems={"center"}>
-              <Heading color={"gray.700"}>$100</Heading>
+              <Heading color={"gray.700"}>${totalExpense}</Heading>
               <Text color={"gray.600"}>Total Expense</Text>
             </Flex>
           </Flex>
-          =
         </Flex>
         <Box
           flex={"1"}
@@ -83,7 +89,7 @@ const Summary = ({ onClose, isOpen }: ISummaryProps) => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Chart expense={100} income={1000}></Chart>
+          <Chart expense={totalExpense} income={totalIncome}></Chart>
         </Box>
       </Flex>
       <AddTransaction onClose={onClose} isOpen={isOpen} />
