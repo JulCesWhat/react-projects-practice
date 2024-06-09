@@ -44,7 +44,7 @@ const options = {
   },
 };
 
-const Char = ({ expense = 100, income = 100 }) => {
+const ChartComp = ({ expense = 100, income = 100 }) => {
   return (
     <Chart
       options={options as ApexCharts.ApexOptions}
@@ -55,4 +55,4 @@ const Char = ({ expense = 100, income = 100 }) => {
     />
   );
 };
-export default Char;
+export default ChartComp

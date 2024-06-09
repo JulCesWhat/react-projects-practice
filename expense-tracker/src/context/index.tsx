@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 
-interface IFormData {
+export interface IFormData {
   type: string;
   amount: number;
   description: string;
